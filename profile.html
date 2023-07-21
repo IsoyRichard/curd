@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Perfil</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p id="username">a</p>
+    <p id="surname">b</p>
+    <p id="email">c</p>
+
+    <button onclick="window.location.href='logout.php'">Cerrar sesion</button>
+    <button onclick="window.location.href='delete_account.php'">Eliminar cuenta</button>
+    <button onclick="window.location.href='update_account.html'">Actualizar datos</button>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "userdata.php",
+                dataType: "json",
+                success: function(data) {
+                    $("#username").text("Nombre: " + data.username);
+                    $("#surname").text("Apellido: " + data.surname);
+                    $("#email").text("Correo electrónico: " + data.email);
+                },
+                error: function() {
+                    console.error("Error al obtener los datos del usuario");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
